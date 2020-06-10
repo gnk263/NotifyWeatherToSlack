@@ -3,6 +3,12 @@ Transform: AWS::Serverless-2016-10-31
 Description: Notify-Weather-To-Slack
 
 Parameters:
+  Latitude:
+    Type: AWS::SSM::Parameter::Value<String>
+
+  Longitude:
+    Type: AWS::SSM::Parameter::Value<String>
+
   ApiKey:
     Type: AWS::SSM::Parameter::Value<String>
 
@@ -19,6 +25,8 @@ Resources:
       Timeout: 10
       Environment:
         Variables:
+          LATITUDE: !Ref Latitude
+          LONGITUDE: !Ref Longitude
           API_KEY: !Ref ApiKey
           SLACK_URL: !Ref SlackUrl
       Events:
