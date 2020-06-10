@@ -23,6 +23,12 @@ deploy:
 			ApiKey=$(SSM_API_KEY) \
 			SlackUrl=$(SSM_SLACK_URL)
 
+test:
+	LATITUDE=123.45 \
+	LONGITUDE=12.345 \
+	API_KEY=xxxyyyzzz \
+		python -m pytest tests/ -v
+
 delete-stack:
 	aws cloudformation delete-stack \
-		-- stack-name $(STACK_NAME)
+		--stack-name $(STACK_NAME)

@@ -16,9 +16,10 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
 
 Resources:
-  HelloWorldFunction:
+  NotifyWeatherFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: notify-weather-to-slack-function
       CodeUri: src/
       Handler: app.lambda_handler
       Runtime: python3.7
@@ -34,3 +35,8 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: cron(0 0/3 * * ? *) # 日本時間で毎日0時から3時間毎
+
+  NotifyWeatherFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${NotifyWeatherFunction}"
