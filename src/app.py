@@ -98,7 +98,7 @@ def create_message_blocks_hourly(weather_data):
                 },
                 {
                     'type': 'mrkdwn',
-                    'text': f'{rain:>4.1f}mm/h　{temperature:>4.1f}℃　'
+                    'text': f'{description:　<6}　{rain:>4.1f}mm/h　{temperature:>4.1f}℃　'
                             f'{humidity}％　{pressure:>4}hPa　{wind_speed:>4.1f}m/s'
                 }
             ]
@@ -144,7 +144,7 @@ def create_message_blocks_daily(weather_data):
                 },
                 {
                     'type': 'mrkdwn',
-                    'text': f'{rain:>4.1f}mm/h　{temperature_min:>4.1f}℃　{temperature_max:>4.1f}℃　'
+                    'text': f'{description:　<6}　{rain:>4.1f}mm/h　{temperature_min:>4.1f}℃　{temperature_max:>4.1f}℃　'
                             f'{humidity}％　{pressure:>4}hPa　{wind_speed:>4.1f}m/s'
                 }
             ]
