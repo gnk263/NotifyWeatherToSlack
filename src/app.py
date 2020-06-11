@@ -25,7 +25,7 @@ def main():
     print(json.dumps(message))
 
     # Slackに通知する
-    # post_slack(message)
+    post_slack(message)
 
 def get_weather_endpoint(latitude, longitude, api_key):
     base_url = 'https://api.openweathermap.org/data/2.5/onecall'
