@@ -115,7 +115,7 @@ def create_message_blocks_daily(weather_data):
         }
     })
 
-    # 1時間毎のメッセージを作る
+    # 1日毎のメッセージを作る
     for item in daily:
         target_datetime = convert_unixtime_to_jst_datetime(item['dt'])
         description = item['weather'][0]['description']
