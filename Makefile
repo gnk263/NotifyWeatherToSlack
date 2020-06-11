@@ -27,6 +27,7 @@ test:
 	LATITUDE=123.45 \
 	LONGITUDE=12.345 \
 	API_KEY=xxxyyyzzz \
+	SLACK_URL=dummy \
 		python -m pytest tests/ -v
 
 delete-stack:
