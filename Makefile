@@ -1,9 +1,9 @@
 BUCKET_NAME := gnk263-sam-bucket
-STACK_NAME := Notify-Weather-To-Slack-App
-SSM_LATITUDE_KEY := /Notify-Weather-To-Slack-App/Latitude
-SSM_LONGITUDE_KEY := /Notify-Weather-To-Slack-App/Longitude
+STACK_NAME := Notify-Weather-To-Slack-App-tokyo
+SSM_LATITUDE_KEY := /Notify-Weather-To-Slack-App/tokyo/Latitude
+SSM_LONGITUDE_KEY := /Notify-Weather-To-Slack-App/tokyo/Longitude
 SSM_API_KEY := /Notify-Weather-To-Slack-App/apikey
-SSM_SLACK_URL := /Notify-Weather-To-Slack-App/slack/notify-weather-tokyo/url
+SSM_SLACK_URL := /Notify-Weather-To-Slack-App/tokyo/slack_url
 
 deploy:
 	sam build
