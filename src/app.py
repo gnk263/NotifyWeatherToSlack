@@ -69,12 +69,9 @@ def create_message_blocks_hourly(weather_data):
         }
     })
 
-    # 1時間毎のメッセージを作る
-    for i, item in enumerate(hourly):
-        if i >= 24:
-            # 直近24時間を超えるデータは扱わない
-            break
-
+    # 1時間毎のメッセージを作る(12時間分)
+    for i in range(12):
+        item = hourly[i]
         target_datetime = convert_unixtime_to_jst_datetime(item['dt'])
         description = item['weather'][0]['description']
         icon_url = get_icon_url(item['weather'][0]['icon'])
