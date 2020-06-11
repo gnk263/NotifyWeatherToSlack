@@ -1,8 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Notify-Weather-To-Slack
+Description: Notify-Weather-To-Slack-App
 
 Parameters:
+  TargetName:
+    Type: String
+
   Latitude:
     Type: AWS::SSM::Parameter::Value<String>
 
@@ -19,7 +22,7 @@ Resources:
   NotifyWeatherFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: notify-weather-to-slack-function
+      FunctionName: !Sub notify-weather-to-slack-${TargetName}-function
       CodeUri: src/
       Handler: app.lambda_handler
       Runtime: python3.7

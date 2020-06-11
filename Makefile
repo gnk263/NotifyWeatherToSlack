@@ -1,9 +1,16 @@
 BUCKET_NAME := gnk263-sam-bucket
-STACK_NAME := Notify-Weather-To-Slack-App-tokyo
-SSM_LATITUDE_KEY := /Notify-Weather-To-Slack-App/tokyo/Latitude
-SSM_LONGITUDE_KEY := /Notify-Weather-To-Slack-App/tokyo/Longitude
-SSM_API_KEY := /Notify-Weather-To-Slack-App/apikey
-SSM_SLACK_URL := /Notify-Weather-To-Slack-App/tokyo/slack_url
+TARGET_NAME := tokyo
+BASE_STACK_NAME := Notify-Weather-To-Slack-App
+
+###
+
+STACK_NAME := $(BASE_STACK_NAME)-$(TARGET_NAME)
+SSM_LATITUDE_KEY := /$(BASE_STACK_NAME)/$(TARGET_NAME)/Latitude
+SSM_LONGITUDE_KEY := /$(BASE_STACK_NAME)/$(TARGET_NAME)/Longitude
+SSM_SLACK_URL := /$(BASE_STACK_NAME)/$(TARGET_NAME)/slack_url
+SSM_API_KEY := /$(BASE_STACK_NAME)/apikey
+
+###
 
 deploy:
 	sam build
@@ -18,6 +25,7 @@ deploy:
 		--capabilities CAPABILITY_NAMED_IAM \
 		--no-fail-on-empty-changeset \
 		--parameter-overrides \
+			TargetName=$(TARGET_NAME) \
 			Latitude=$(SSM_LATITUDE_KEY) \
 			Longitude=$(SSM_LONGITUDE_KEY) \
 			ApiKey=$(SSM_API_KEY) \
@@ -33,3 +41,13 @@ test:
 delete-stack:
 	aws cloudformation delete-stack \
 		--stack-name $(STACK_NAME)
+
+display-setting:
+	@echo BUCKET_NAME = $(BUCKET_NAME)
+	@echo TARGET_NAME = $(TARGET_NAME)
+	@echo BASE_STACK_NAME = $(BASE_STACK_NAME)
+	@echo STACK_NAME = $(STACK_NAME)
+	@echo SSM_LATITUDE_KEY = $(SSM_LATITUDE_KEY)
+	@echo SSM_LONGITUDE_KEY = $(SSM_LONGITUDE_KEY)
+	@echo SSM_SLACK_URL = $(SSM_SLACK_URL)
+	@echo SSM_API_KEY = $(SSM_API_KEY)
