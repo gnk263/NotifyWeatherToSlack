@@ -37,7 +37,7 @@ Resources:
         NotifySlack:
           Type: Schedule
           Properties:
-            Schedule: cron(0 0/3 * * ? *) # 日本時間で毎日0時から3時間毎
+            Schedule: cron(0 0/1 * * ? *) # 日本時間で毎日0時から1時間毎
 
   NotifyWeatherFunctionLogGroup:
     Type: AWS::Logs::LogGroup
